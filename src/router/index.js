@@ -11,18 +11,28 @@ const router = createRouter(
             {
                 path: '/',
                 component: Home,
+                meta :{
+                }
             },
             {
                 path: '/login',
                 component: Login,
+                meta :{
+                    hideNavbar:true
+                }
             },
             {
                 path: '/register',
                 component: Register,
+                meta :{
+                    hideNavbar:true
+                }
             },
             {
                 path: '/reserve',
                 component: Reserve,
+                meta :{
+                }
             }
         ]
     }
