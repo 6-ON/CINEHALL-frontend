@@ -10,6 +10,7 @@
         <textarea class="form-field" type="text" placeholder="Token"></textarea>
         <button type="submit" class="form-submit">Login</button>
       </form>
+      <router-link to="/register" class="link" >You don't have a token ?</router-link>
     </div>
   </main>
 
@@ -38,5 +39,8 @@ export default {
 }
 .form-submit{
   @apply text-red-200 bg-red-500 mt-5 rounded-2xl py-2 px-4 w-fit hover:bg-red-50 hover:text-red-500
+}
+.link{
+  @apply text-red-50 hover:underline mt-2
 }
 </style>
