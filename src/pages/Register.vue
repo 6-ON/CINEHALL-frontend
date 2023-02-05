@@ -66,7 +66,7 @@ export default {
 <style scoped>
 
 .file-field {
-  @apply bg-red-500 text-red-50 text-opacity-50 w-full text-center rounded-3xl p-1 py-2
+  @apply bg-red-500 text-red-50 text-opacity-50 w-full text-center rounded-2xl p-1 py-2
 }
 
 
