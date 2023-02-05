@@ -16,18 +16,18 @@
       </div>
       <div>
         <ul>
-          <li class="mb-1">
+          <li class="mb-1 text-gray-400">
             <router-link @click="$emit('sidebar-close')"
                 exact-active-class="bg-red-50 text-red-600"
-                class="block p-4 text-sm font-semibold text-gray-400 hover:bg-red-50 hover:text-red-600 rounded"
+                class="block p-4 text-sm font-semibold hover:bg-red-50 hover:text-red-600 rounded"
                 to="/">Home
             </router-link>
           </li>
-          <li class="mb-1">
-            <router-link @click="$emit('sidebar-close')" to="/reserve"
+          <li class="mb-1 text-gray-400">
+            <router-link @click="$emit('sidebar-close')" to="/films"
                          exact-active-class="bg-red-50 text-red-600"
-                         class="block p-4 text-sm font-semibold text-gray-400 hover:bg-red-50 hover:text-red-600 rounded">
-              Reserve
+                         class="block p-4 text-sm font-semibold hover:bg-red-50 hover:text-red-600 rounded">
+              Films
             </router-link>
           </li>
         </ul>
