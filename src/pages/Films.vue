@@ -6,13 +6,14 @@
            @change="handleDate">
   </div>
   <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-3">
-    <film-card v-for="x in [1,1,1]"></film-card>
+    <film-card :key="film.id" v-for="film in films" :info="film"></film-card>
   </div>
 </template>
 
 <script>
 import FilmCard from "@/components/FilmCard.vue";
 import moment from "moment";
+import axios from "axios";
 
 export default {
   name: "Films",
@@ -22,7 +23,9 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      films: [1]
+    }
   },
   components: {FilmCard},
   methods: {
@@ -33,8 +36,25 @@ export default {
       if ([6, 7].includes(day)) {
         e.preventDefault();
         input.value = '';
+        return
       }
+      this.loadFilms({date:input.value})
+    },
+    loadFilms(options = {}) {
+      const data = new URLSearchParams()
+      for (const key in options) {
+        data.append(key, options[key])
+      }
+
+      axios.get('http://localhost:8080/films?' + data.toString(),
+      )
+          .then(res => {
+            this.films = res.data
+          })
     }
+  }
+  , mounted() {
+    this.loadFilms()
   }
 
 }
