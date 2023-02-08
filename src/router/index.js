@@ -10,6 +10,7 @@ const router = createRouter(
         history: createWebHistory(),
         routes: [
             {
+                name : 'home',
                 path: '/',
                 component: Home,
                 meta: {
@@ -17,6 +18,7 @@ const router = createRouter(
                 }
             },
             {
+                name : 'login',
                 path: '/login',
                 component: Login,
                 meta: {
@@ -24,6 +26,7 @@ const router = createRouter(
                 }
             },
             {
+                name : 'register',
                 path: '/register',
                 component: Register,
                 meta: {
@@ -31,11 +34,13 @@ const router = createRouter(
                 }
             },
             {
+                name : 'films',
                 path: '/films',
                 component: Films,
                 meta: {}
             },
             {
+                name : 'reserve',
                 path: '/reserve',
                 component: Reserve,
                 meta: {}
