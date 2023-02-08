@@ -23,6 +23,10 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
+// get signature,
+// use it  upload image to cloudinary
+// get the image url and insert it in the database
 
 export default {
   name: "Register",
@@ -32,32 +36,85 @@ export default {
         firstName: '',
         lastName: '',
         email: '',
-        image: null
       },
+      image: null,
       filename: 'Upload User image'
     }
   },
   computed: {},
   methods: {
     changeImage(e) {
-      this.formData.image = e.target.files[0]
-      this.filename = this.formData.image.name
+      this.image = e.target.files[0]
+      this.filename = this.image.name
     },
+    async getSignature() {
+      return await axios.get('http://localhost:8080/upload/get-sig').catch((err) => console.log(err))
+    }
+    ,
+    async uploadImage() {
+      return await this.getSignature().then(async (res) => {
+        // after getting signature
+        const result = res.data
+        const api_key = '571349964156337'
+        const data = new FormData()
+        data.append('file', this.image)
+        data.append('api_key', api_key)
+        data.append('signature', result.signature)
+        data.append('timestamp', result.timestamp)
+        data.append('folder', 'CineHall')
+        const config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: 'https://api.cloudinary.com/v1_1/dgmmjsxbf/auto/upload',
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          data: data
+        };
+
+        return axios(config);
+      })
+          .catch(function (error) {
+            console.log(error)
+          })
+
+    }, async saveUser() {
+      return await this.uploadImage().then((res) => {
+        // after upload
+        const image_url = res.data.secure_url
+        const params = new URLSearchParams()
+        for (const item in this.formData) {
+          params.append(item, this.formData[item])
+        }
+        params.append('image', image_url)
+        let config = {
+          method: 'put',
+          maxBodyLength: Infinity,
+          url: 'http://localhost:8080/users/create',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: params
+        };
+        return axios(config)
+
+      }).catch((err) => console.log(err))
+
+    }
+    ,
     handleRegister() {
-      console.log(this.formData)
+      this.saveUser().then((res => {
+        const token = res.data.content.token
+        navigator.clipboard.writeText(token)
+        Swal.fire({
+          title: 'Registration Done !',
+          icon: 'success',
+          text: 'The token is Copied to the clipboard paste it in the login page'
+        }).then(() => {
+          this.$router.push('/login')
+        })
 
-
-      // axios({
-      //   method:'PUT',
-      //   url: 'http://localhost:8080/users/register',
-      //   data:{}
-      // })
-      //     .then(res => {
-      //       console.log(res)
-      //     })
-      //     .catch(err => {
-      //       console.error(err)
-      //     })
+      }));
     }
   }
 }
