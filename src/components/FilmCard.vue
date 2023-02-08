@@ -1,27 +1,33 @@
 <template>
-  <div class="bg-red-100 text-gray-900 w-full md:w-full max-w-4xl rounded-xl overflow-hidden shadow-lg flex justify-between">
-    <div class="md:flex-shrink-0">
-      <img class="md:w-56"
-           src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/nAU74GmpUk7t5iklEp3bufwDq4n.jpg"
-           alt="A Quiet Place movie poster" />
-    </div>
-    <div class="flex flex-col flex-grow px-8 py-4 bg-color-333">
-      <h3 class="font-bold text-4xl md:text-2xl lg:text-2xl">A Quiet Place</h3>
-      <span class="text-xl lg:text-sm lg:mb-4 font-mono font-bold">2019</span>
-      <div class="flex-grow">
-        <p class="text-xl md:text-base lg:text-base leading-snug truncate-overflow">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur at minus nostrum. Aliquid animi assumenda at doloribus ea fuga ipsam laboriosam magnam nam quia sunt, temporibus totam vel voluptate?
-        </p>
-      </div>
-      <div class="button-container flex justify-end mb-2">
-        <router-link to="/reserve" class="text-lg lg:text-sm font-bold py-2 px-4 rounded bg-orange-200 text-orange-700">Reserve</router-link>
-      </div>
+
+  <div class="flex max-sm:flex-col bg-amber-200 rounded overflow-hidden shadow hover:shadow-lg sm:max-h-64">
+    <img class="w-64 h-64 max-sm:w-full max-sm:h-96 object-cover" :src="info.image" alt="">
+    <div class="flex flex-col gap-3 p-2 max-h-64">
+      <h3 class="text-2xl font-bold">{{ info.label }}</h3>
+      <h4 class="font-mono">{{ info.hall }}</h4>
+      <p class="max-h-24 text-clip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi autem beatae
+        consectetur delectus, dignissimos distinctio eveniet fuga, laborum officia porro suscipit temporibus voluptate!
+        Ad consequatur doloribus ipsa quae sit.</p>
+      <router-link :to="{name: 'reserve',query: { film:info.id } }"
+                   class="bg-red-500 rounded-full w-fit px-6 py-2 self-end text-white hover:text-red-500 hover:bg-amber-100 hover:shadow">
+        Reserve
+      </router-link>
     </div>
   </div>
+
+
 </template>
 
 <script>
 export default {
+  props: {
+    info: {
+      id: Number,
+      label: String,
+      image: String,
+      hall: String
+    }
+  },
   name: "FilmCard"
 }
 </script>
