@@ -43,7 +43,10 @@ const router = createRouter(
                 name : 'reserve',
                 path: '/reserve',
                 component: Reserve,
-                meta: {}
+                meta: {
+                    navbarFixed: 'fixed top-0'
+
+                }
             }
         ]
     }
