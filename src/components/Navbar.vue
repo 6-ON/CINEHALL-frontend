@@ -37,7 +37,7 @@ export default {
           </svg>
         </button>
       </div>
-      <ul class="text-gray-500 hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+      <ul class="text-gray-700 font-semibold hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
         <li>
           <router-link exact-active-class="text-red-600 font-bold" to="/" class="text-sm">Home</router-link>
         </li>
