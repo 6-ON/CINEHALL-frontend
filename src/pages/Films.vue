@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      films: [1]
+      films: null
     }
   },
   components: {FilmCard},
