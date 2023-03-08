@@ -1,5 +1,4 @@
 <template>
-
   <main class="main-wrapper">
     <div class="form-wrapper">
       <router-link to="/">
@@ -17,8 +16,6 @@
       <router-link to="/login" class="link">Already registered ?</router-link>
     </div>
   </main>
-
-
 </template>
 
 <script>
@@ -71,12 +68,12 @@ export default {
           },
           data: data
         };
-
-        return axios(config);
+        const response = axios(config);
       })
-          .catch(function (error) {
-            console.log(error)
-          })
+        .catch(function (error) {
+          console.log(error)
+        })
+      return response
 
     }, async saveUser() {
       return await this.uploadImage().then((res) => {
@@ -121,7 +118,6 @@ export default {
 </script>
 
 <style scoped>
-
 .file-field {
   @apply bg-red-500 text-red-50 text-opacity-50 w-full text-center rounded-2xl p-1 py-2
 }
@@ -132,8 +128,7 @@ export default {
 }
 
 .main-wrapper {
-  @apply h-screen w-full bg-cover bg-[url('https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]
-  flex justify-center items-center
+  @apply h-screen w-full bg-cover bg-[url('https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] flex justify-center items-center
 }
 
 .form-wrapper {
@@ -141,7 +136,7 @@ export default {
 }
 
 .form-field {
-  @apply bg-red-500  rounded-2xl w-full p-1 py-2 text-red-200 outline-none text-center placeholder-red-50 placeholder-opacity-30 resize-none
+  @apply bg-red-500 rounded-2xl w-full p-1 py-2 text-red-200 outline-none text-center placeholder-red-50 placeholder-opacity-30 resize-none
 }
 
 .form-submit {
