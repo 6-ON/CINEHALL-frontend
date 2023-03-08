@@ -1,16 +1,18 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/pages/Home.vue";
 import Login from "@/pages/Login.vue";
 import Register from "@/pages/Register.vue";
 import Reserve from "@/pages/Reserve.vue";
 import Films from "@/pages/Films.vue";
+import Reservations from "@/pages/Reservations.vue";
+import axios from "axios";
 
 const router = createRouter(
     {
         history: createWebHistory(),
         routes: [
             {
-                name : 'home',
+                name: 'home',
                 path: '/',
                 component: Home,
                 meta: {
@@ -18,7 +20,7 @@ const router = createRouter(
                 }
             },
             {
-                name : 'login',
+                name: 'login',
                 path: '/login',
                 component: Login,
                 meta: {
@@ -26,7 +28,7 @@ const router = createRouter(
                 }
             },
             {
-                name : 'register',
+                name: 'register',
                 path: '/register',
                 component: Register,
                 meta: {
@@ -34,17 +36,26 @@ const router = createRouter(
                 }
             },
             {
-                name : 'films',
+                name: 'films',
                 path: '/films',
                 component: Films,
                 meta: {}
             },
             {
-                name : 'reserve',
+                name: 'reserve',
                 path: '/reserve',
                 component: Reserve,
                 meta: {
                     navbarFixed: 'fixed top-0'
+
+                }
+            },
+            {
+                name: 'reservations',
+                path: '/reservations',
+                component: Reservations,
+                meta: {
+                    navbarFixed: 'sitky top-0'
 
                 }
             }
