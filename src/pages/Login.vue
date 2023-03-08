@@ -1,5 +1,4 @@
 <template>
-
   <main class="main-wrapper">
     <div class="form-wrapper">
       <router-link to="/">
@@ -13,7 +12,6 @@
       <router-link to="/register" class="link">You don't have a token ?</router-link>
     </div>
   </main>
-
 </template>
 
 <script>
@@ -40,25 +38,26 @@ export default {
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-        axios.defaults.headers.common['Authorization'] =
-            `Bearer ${this.token}`;
-        axios.post('http://localhost:8080/users/login')
-            .then(res => {
-              const data = res.data
-              Toast.fire({
-                icon: data.type,
-                title: data.content.message
-              })
-              this.$router.push('/')
 
-            })
-            .catch(err => {
-              const data = err.response.data
-              Toast.fire({
-                icon: data.type,
-                title: data.content.message
-              })
-            })
+      axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+      axios.post('http://localhost:8080/users/login')
+        .then(res => {
+          localStorage.setItem('token',this.token)
+          const data = res.data
+          Toast.fire({
+            icon: data.type,
+            title: data.content.message
+          })
+          this.$router.push('/')
+
+        })
+        .catch(err => {
+          const data = err.response.data
+          Toast.fire({
+            icon: data.type,
+            title: data.content.message
+          })
+        })
     }
   }
 }
@@ -66,8 +65,7 @@ export default {
 
 <style scoped>
 .main-wrapper {
-  @apply h-screen w-full bg-cover bg-[url('https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]
-  flex justify-center items-center
+  @apply h-screen w-full bg-cover bg-[url('https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] flex justify-center items-center
 }
 
 .form-wrapper {
