@@ -68,12 +68,11 @@ export default {
           },
           data: data
         };
-        const response = axios(config);
+        return axios(config);
       })
         .catch(function (error) {
           console.log(error)
         })
-      return response
 
     }, async saveUser() {
       return await this.uploadImage().then((res) => {
